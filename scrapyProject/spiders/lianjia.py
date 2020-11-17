@@ -9,9 +9,13 @@ class LianjiaSpider(scrapy.Spider):
     base_url = 'https://bj.lianjia.com/ershoufang/'
     zones = ['dongcheng/', 'xicheng/', 'chaoyang/', 'haidian/']
     zones_chinese = ['东城', '西城', '朝阳', '海淀']
-    page_index = 1
-    zone_index = 1
+    page_index = 1  # 页面计数
+    zone_index = 1  # 地区计数
     start_urls = [base_url + zones[0]]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.download_delay = 5
 
     def parse(self, response, **kwargs):
         item = ScrapyprojectItem()
@@ -34,20 +38,11 @@ class LianjiaSpider(scrapy.Spider):
         self.page_index += 1
         if self.zone_index < len(self.zones):
             if self.page_index <= 5:
-                # print(self.page_index)
-                # print(self.zone_index)
                 url = self.base_url + self.zones[self.zone_index] + 'pg' + str(self.page_index)
             else:
-                # print(self.page_index)
-                # print(self.zone_index)
-                # print(len(self.zones))
                 self.page_index = 1
                 url = self.base_url + self.zones[self.zone_index]
                 self.zone_index += 1
         else:
             return
         yield scrapy.Request(url, callback=self.parse)
-        # self.zone_index += 1
-        # if self.zone_index < len(self.zones):
-        #     url = self.base_url + self.zones[self.zone_index]
-        #     scrapy.Request(url, callback=self.parse)
