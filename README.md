@@ -28,27 +28,15 @@
 
 后显示如图 1 所示页面，其中的相关元素能够容易地获得其 xpath
 
-![avatar](https://note.youdao.com/yws/api/personal/file/WEBf56310f9739742ebc5164b372378a0c5?method=download&shareKey=3c7c7802315c96714a514ab2639c4d82)
-
-<center
-><b
->图1 学堂在线主页面</b></center>
+![alt text](https://note.youdao.com/yws/api/personal/file/WEBf56310f9739742ebc5164b372378a0c5?method=download&shareKey=3c7c7802315c96714a514ab2639c4d82 "图1 学堂在线主页面")
 
 但是，查看网页源代码（图 2）后可以发现，该页面由 js 动态生成，无法用传统**静态页面 + xpath**的方法爬取数据。
 
-![avatar](https://note.youdao.com/yws/api/personal/file/WEBec810df566a88d8fbed18f9f186ef3a8?method=download&shareKey=9217ef7a1ce65da6a64821b6fad8940b)
-
-<center
-><b
->图2 学堂在线网页源码</b></center>
+![alt text](https://note.youdao.com/yws/api/personal/file/WEBec810df566a88d8fbed18f9f186ef3a8?method=download&shareKey=9217ef7a1ce65da6a64821b6fad8940b "图2 学堂在线网页源码")
 
 刷新页面，并在浏览器开发者工具中的网页选项查看资源请求情况，发现一个 **XMLHttpRequest**（图 3），其 POST 请求返回有关页面内所有数据（包括未显示的数据）的 JSON。
 
-![avatar](https://note.youdao.com/yws/api/personal/file/WEB0b9f0efdd698030e5e96ab078c294f1b?method=download&shareKey=cacf448b2c1052e5c070d835fba4555b)
-
-<center
-><b
->图3 返回JSON数据的XHR</b></center>
+![alt text](https://note.youdao.com/yws/api/personal/file/WEB0b9f0efdd698030e5e96ab078c294f1b?method=download&shareKey=cacf448b2c1052e5c070d835fba4555b "图3 返回JSON数据的XHR")
 
 因此，本实验中应当利用 Scrapy 向图 3 中**XMLHttpRequest**对应的 URL 发送 POST 请求，通过解析返回的 JSON 数据得到课程的具体信息，进而在 Scrapy 的**piplines**中将数据写入 CSV。
 
@@ -60,11 +48,7 @@
 
 后显示如图 4 所示页面，其中的相关元素能够容易地获得其 xpath
 
-![avatar](https://note.youdao.com/yws/api/personal/file/WEBee170a0eb09c991f6e19c58b9512b661?method=download&shareKey=d97473336092a384d145d4a28e4913bc)
-
-<center
-><b
->图4 链家主页面</b></center>
+![alt text](https://note.youdao.com/yws/api/personal/file/WEBee170a0eb09c991f6e19c58b9512b661?method=download&shareKey=d97473336092a384d145d4a28e4913bc "图4 链家主页面")
 
 链家的网页资源为静态页面，即通过浏览器的 URL 发送 GET 请求即可获取整个页面的 HTML 资源。然而在测试中发现，利用浏览器开发工具自动生成的绝对 xpath 存在无法获取数据的问题。因此在该部分的 xpath 将利用间接定位的间接 xpath 定位有关元素，进而在 Scrapy 的**piplines**中将数据写入 JSON 文件。
 
@@ -154,11 +138,7 @@ _**Python 版本**_：Python 3.8
 
 建议在集成开发环境 **PyCharm** 中运行本项目。
 
-![avatar](https://note.youdao.com/yws/api/personal/file/WEB63d2306aa83f166daf5e7c8ef3e9abdf?method=download&shareKey=b3a6bd89d3d2c1c23763ae4c85e412c6)
-
-<center
-><b
->图5 Scrapy的安装</b></center>
+![alt text](https://note.youdao.com/yws/api/personal/file/WEB63d2306aa83f166daf5e7c8ef3e9abdf?method=download&shareKey=b3a6bd89d3d2c1c23763ae4c85e412c6 "图5 Scrapy的安装")
 
 在 PyCharm 的项目中，找到设置中的图 5 界面。点击该界面点击右方的 **'+'** 符号，搜索 _**Scrapy**_ 并安装，可以大大简化 Scrapy 的安装过程。
 
