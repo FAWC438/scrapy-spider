@@ -23,14 +23,18 @@ class LianjiaSpider(scrapy.Spider):
         info_list = response.xpath('//div[@class="info clear"]')
         for info in info_list:
             item['zone_name'] = self.zones_chinese[self.zone_index - 1]
-            item['building_names'] = info.xpath('./div[@class="title"]/a/text()').extract()[0]
+            item['building_names'] = info.xpath('./div[@class="flood"]/div[@class="positionInfo"]/a[1]/text()').get()
+            # print(item['building_names'])
             item['total_price'] = ''.join(info.xpath(
-                './div[@class="priceInfo"]/div[@class="totalPrice"]/span/text()').extract() + info.xpath(
-                './div[@class="priceInfo"]/div[@class="totalPrice"]/text()').extract())
+                './div[@class="priceInfo"]/div[@class="totalPrice"]/span/text()').getall() + info.xpath(
+                './div[@class="priceInfo"]/div[@class="totalPrice"]/text()').getall())
+            # print(item['total_price'])
             item['area'] = info.xpath(
-                './div[@class="address"]/div[@class="houseInfo"]/text()').re('[0-9]+\.[0-9]+平米|[0-9]+平米')[0]
+                './div[@class="address"]/div[@class="houseInfo"]/text()').get().split('|')[1].strip()
+            # print(item['area'])
             item['price_per_area'] = info.xpath(
-                './div[@class="priceInfo"]/div[@class="unitPrice"]/span/text()').extract()[0]
+                './div[@class="priceInfo"]/div[@class="unitPrice"]/span/text()').get()
+            # print(item['price_per_area'])
 
             if item['building_names'] and item['total_price'] and item['area'] and item['price_per_area']:
                 yield item
