@@ -23,7 +23,7 @@ class LianjiaSpider(scrapy.Spider):
         info_list = response.xpath('//div[@class="info clear"]')
         for info in info_list:
             item['zone_name'] = self.zones_chinese[self.zone_index - 1]
-            item['building_names'] = info.xpath('./div[@class="title"]/a/text()').extract()[0]
+            item['building_names'] = info.xpath('./div[@class="title"]/a/text()').extract()[0].replace(' ', '')
             item['total_price'] = ''.join(info.xpath(
                 './div[@class="priceInfo"]/div[@class="totalPrice"]/span/text()').extract() + info.xpath(
                 './div[@class="priceInfo"]/div[@class="totalPrice"]/text()').extract())
