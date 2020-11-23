@@ -17,7 +17,7 @@ class ScrapyprojectItem(scrapy.Item):
     # lianjia
     zone_name = scrapy.Field()
     building_names = scrapy.Field()
-    total_price = scrapy.Field()
+    total_price = scrapy.Field()  # loupan也使用该Field
     area = scrapy.Field()
     price_per_area = scrapy.Field()
 
@@ -26,3 +26,12 @@ class ScrapyprojectItem(scrapy.Item):
     teacher = scrapy.Field()
     school_name = scrapy.Field()
     student_num = scrapy.Field()
+
+    # loupan
+    name = scrapy.Field()
+    location_district = scrapy.Field()
+    location_place = scrapy.Field()
+    location_detail = scrapy.Field()
+    room_type = scrapy.Field()
+    room_area = scrapy.Field()
+    average_price = scrapy.Field()
