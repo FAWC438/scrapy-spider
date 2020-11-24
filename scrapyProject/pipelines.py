@@ -15,7 +15,7 @@ class ScrapyprojectPipeline:
     csv_writer_xuetang = csv.DictWriter(csv_file,
                                         fieldnames=['class_name', 'teacher', 'school_name', 'student_num'])
     # csv_writer_xuetang.writeheader()
-    csv_writer_loupan = csv.DictWriter(csv_file,
+    csv_writer_loupan = csv.DictWriter(csv_file, delimiter=',',
                                        fieldnames=['name', 'location_district', 'location_place', 'location_detail',
                                                    'room_type', 'room_area', 'total_price', 'average_price'])
     csv_writer_loupan.writeheader()

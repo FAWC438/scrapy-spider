@@ -1,10 +1,16 @@
 import pandas as pd
 
-fd = pd.read_csv('CsvData.csv', delimiter="\t", encoding='GBK')
+fd = pd.read_csv('CsvData.csv')
 print(fd)
 
-print('-' * 24 + '简介' + '-' * 24)
+print('-' * 25 + 'head' + '-' * 25)
+print(fd.head())
+
+print('-' * 25 + 'describe' + '-' * 25)
 print(fd.describe())
+
+print('-' * 25 + 'info' + '-' * 25)
+print(fd.info())
 
 print('-' * 22 + '按照总价升序' + '-' * 22)
 print(fd.sort_values('total_price', inplace=False))
