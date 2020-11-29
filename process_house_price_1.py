@@ -34,5 +34,5 @@ print(df_out_range.info())
 print("================================")
 print('异常数据总数：' + str(df_out_range.index.size))
 
-df_in_range.to_csv('csvResult/Beijing_new_house_price_in_range.csv', index=False)
-df_out_range.to_csv('csvResult/Beijing_new_house_price_out_range.csv', index=False)
+df_in_range.to_csv('csvResult/Beijing_new_house_price_in_range.csv', encoding='utf_8_sig', index=False)
+df_out_range.to_csv('csvResult/Beijing_new_house_price_out_range.csv', encoding='utf_8_sig', index=False)

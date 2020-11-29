@@ -1,6 +1,10 @@
 import pandas as pd
 from pandas import DataFrame
 
+'''
+汇总统计2015年五座城市每日PM值数据，并输出至CSV文件
+'''
+
 df_res = DataFrame()
 
 # 北京数据

@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 
 '''
+通过CSV文件数据作饼图
+
 0-50 Ⅰ 优
 51-100 Ⅱ 良
 101-150 Ⅲ 轻度污染
@@ -28,7 +30,7 @@ for k, v in cities.items():
     result = pd.cut(df[k], sections, labels=pollution_level)
     pollution_count = pd.value_counts(result, sort=False)  # 得到各部分的数量
 
-    # 若无某个等级的数据则将该等级在图中删除，同时需要同步更新标签和拼图样式
+    # 若无某个等级的数据则将该等级在图中删除，同时需要同步更新标签和饼图样式
     pollution_count_copy = pollution_count.copy()
     pollution_level_copy = pollution_level.copy()
     explode_copy = explode.copy()
